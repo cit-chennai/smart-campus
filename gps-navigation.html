@@ -2,113 +2,106 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Smart Campus GPS Navigation</title>
+<title>GPS Navigation</title>
 
 <style>
 body{
-  font-family: Arial;
+  font-family:Arial;
   margin:0;
-  background: linear-gradient(135deg,#e3f2fd,#ffffff);
   text-align:center;
+  background:linear-gradient(135deg,#e3f2fd,#ffffff);
 }
 
 header{
-  background: linear-gradient(90deg,#002147,#0d6efd);
+  background:linear-gradient(90deg,#002147,#0d6efd);
   color:white;
-  padding:30px;
-  font-size:34px;
-  letter-spacing:1px;
+  padding:25px;
+  font-size:28px;
 }
 
 .card{
   background:white;
-  margin:30px auto;
+  margin:40px auto;
   padding:30px;
-  width:95%;          /* change from 85% → 95% */
-  max-width:900px;
+  width:95%;
+  max-width:600px;
   border-radius:20px;
   box-shadow:0 8px 20px rgba(0,0,0,0.15);
-  transition:0.3s;
 }
-.card:hover{
-  transform:scale(1.02);
+
+select, button{
+  width:90%;
+  padding:12px;
+  margin:10px;
+  font-size:16px;
+  border-radius:10px;
 }
 
 button{
-  padding:14px 32px;
-  margin:8px;
-  border:none;
-  border-radius:12px;
-  background: linear-gradient(45deg,#007BFF,#00b4ff);
+  background:linear-gradient(45deg,#007BFF,#00b4ff);
   color:white;
-  font-size:17px;
-  cursor:pointer;
-}
-button:hover{
-  opacity:0.9;
+  border:none;
 }
 </style>
 </head>
 
 <body>
 
-<header>SMART CAMPUS GPS NAVIGATION - CIT</header>
+<header>Campus GPS Navigation</header>
 
-<h2>Select Your Destination</h2>
+<div class="card">
+
+<h3>Select Destination</h3>
 
 <select id="destination">
-    <option value="">--Select Department--</option>
-    <option value="12.97174919259101, 80.04316585539097">Main Building</option>
-    <option value="13.0831,80.2712">CSE Block</option>
-    <option value="13.0835,80.2720">EEE Block</option>
-    <option value="13.0840,80.2718">Library</option>
-    <option value="13.0810,80.2750">ECE Block</option>
-    <option value="13.0821,80.2765">AIDS Block</option>
-    <option value="13.0832,80.2741">IT Block</option>
-    <option value="13.0843,80.2772">CSBS Block</option>
-    <option value="13.0854,80.2738">Civil Block</option>
-    <option value="13.0865,80.2780">Mechanical Block</option>
-    <option value="13.0876,80.2791">Mechatronics Block</option>
-    <option value="13.0887,80.2729">BME Block</option>
-    <option value="13.0898,80.2768">VLSI Block</option>
-    <option value="13.0909,80.2747">ACT Block</option>
-    <option value="13.0915,80.2759">Cyber Security Block</option>
-    <option value="13.0924,80.2776">AIML Block</option>
+<option value="">-- Choose Block --</option>
+
+<option value="13.0800,80.2700">EEE</option>
+<option value="13.0810,80.2710">CSE</option>
+<option value="13.0820,80.2720">ECE</option>
+<option value="13.0830,80.2730">AIDS</option>
+<option value="13.0840,80.2740">IT</option>
+<option value="13.0850,80.2750">CSBS</option>
+<option value="13.0860,80.2760">Civil</option>
+<option value="13.0870,80.2770">Mechanical</option>
+<option value="13.0880,80.2780">Mechatronics</option>
+<option value="13.0890,80.2790">BME</option>
+<option value="13.0900,80.2800">Library</option>
+<option value="13.0910,80.2810">Main Building</option>
+
 </select>
 
-<br>
+<button onclick="openMaps()">Get Directions</button>
 
-<button onclick="getLocation()">Get Directions</button>
+</div>
 
 <script>
-function getLocation() {
 
-    var destination = document.getElementById("destination").value;
+// Auto-select from block page
+const params = new URLSearchParams(window.location.search);
+const dest = params.get("dest");
 
-    if(destination === ""){
-        alert("Please select a destination");
-        return;
+if(dest){
+  const dropdown = document.getElementById("destination");
+  for(let i=0; i<dropdown.options.length; i++){
+    if(dropdown.options[i].text === dest){
+      dropdown.selectedIndex = i;
     }
-
-    if (navigator.geolocation) {
-
-        navigator.geolocation.getCurrentPosition(function(position){
-
-            var userLat = position.coords.latitude;
-            var userLong = position.coords.longitude;
-
-            var mapsUrl = "https://www.google.com/maps/dir/"
-                + userLat + "," + userLong + "/"
-                + destination;
-
-            window.open(mapsUrl, "_blank");
-
-        });
-
-    } else {
-        alert("Geolocation is not supported by this browser.");
-    }
+  }
 }
+
+function openMaps(){
+  const coords = document.getElementById("destination").value;
+  if(coords){
+    window.open(
+      "https://www.google.com/maps/dir/?api=1&destination=" + coords,
+      "_blank"
+    );
+  } else {
+    alert("Please select a destination");
+  }
+}
+
 </script>
 
 </body>
