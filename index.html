@@ -5,48 +5,76 @@
 <title>Smart Campus Navigation – CIT</title>
 
 <style>
+
 body{
-  font-family: Arial;
+  font-family: "Segoe UI", Arial, sans-serif;
   margin:0;
-  background: linear-gradient(135deg,#e3f2fd,#ffffff);
+  background:#f4f7fb;
   text-align:center;
 }
 
+/* HEADER */
+
 header{
-  background: linear-gradient(90deg,#002147,#0d6efd);
+  background: linear-gradient(90deg,#0a1f44,#1f4e79);
   color:white;
-  padding:30px;
-  font-size:34px;
+  padding:28px;
+  font-size:32px;
+  font-weight:600;
   letter-spacing:1px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.2);
 }
+
+/* CARD */
 
 .card{
   background:white;
-  margin:30px auto;
-  padding:30px;
-  width:95%;          /* change from 85% → 95% */
-  max-width:900px;
-  border-radius:20px;
-  box-shadow:0 8px 20px rgba(0,0,0,0.15);
-  transition:0.3s;
-}
-.card:hover{
-  transform:scale(1.02);
+  margin:40px auto;
+  padding:35px;
+  width:95%;
+  max-width:950px;
+  border-radius:18px;
+  box-shadow:0 8px 25px rgba(0,0,0,0.12);
 }
 
+h2{
+  margin-bottom:25px;
+  color:#0a1f44;
+}
+
+/* GRID LAYOUT */
+
+.container{
+  display:grid;
+  grid-template-columns: repeat(auto-fit,minmax(160px,1fr));
+  gap:18px;
+}
+
+/* BUTTON */
+
 button{
-  padding:14px 32px;
-  margin:8px;
+  padding:14px;
   border:none;
-  border-radius:12px;
-  background: linear-gradient(45deg,#007BFF,#00b4ff);
+  border-radius:10px;
+  background: linear-gradient(45deg,#1f4e79,#2a7de1);
   color:white;
-  font-size:17px;
+  font-size:16px;
+  font-weight:500;
   cursor:pointer;
+  transition:0.3s;
+  box-shadow:0 4px 10px rgba(0,0,0,0.15);
 }
+
 button:hover{
-  opacity:0.9;
+  transform:translateY(-3px);
+  box-shadow:0 6px 14px rgba(0,0,0,0.25);
+  background: linear-gradient(45deg,#0a1f44,#2a7de1);
 }
+
+a{
+  text-decoration:none;
+}
+
 </style>
 </head>
 
@@ -57,6 +85,7 @@ SMART CAMPUS NAVIGATION – CIT CHENNAI
 </header>
 
 <div class="card">
+
 <h2>You are at: MAIN BUILDING</h2>
 
 <div class="container">
@@ -73,6 +102,8 @@ SMART CAMPUS NAVIGATION – CIT CHENNAI
 <a href="mechatronicsblock.html"><button>MECHATRONICS</button></a>
 <a href="library.html"><button>LIBRARY</button></a>
 <a href="gps-navigation.html"><button>GPS NAVIGATION</button></a>
+
+</div>
 
 </div>
 
